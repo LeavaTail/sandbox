@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: setup environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install autoconf automake libtool help2man make expect exfat-fuse
+    - name: check
+      run: ./02_simple_inetractive_check.sh
+    - name: confirm result
+      run: cat *.log
