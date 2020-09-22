@@ -34,6 +34,4 @@ jobs:
     - name: 01_tests
       run: ./tests/01_simple_option_check.sh
     - name: 02_tests
-      run: ./tests/02_simple_inetractive_check.sh \
-    - name: 03_tests
-      run: ./tests/03_simple_check_other.sh
+      run: ./tests/02_simple_inetractive_check.sh
