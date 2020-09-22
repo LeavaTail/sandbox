@@ -8,7 +8,37 @@ function test_shell () {
 	set timeout 5
 	spawn ./debugfatfs -iq $1
 	expect \"/> \"
+	send \"cd 00_SIMPLE\n\"
+	expect \"/> \"
+	send \"ls\n\"
+	expect \"/> \"
+	send \"cd /01_LONGNAME\n\"
+	expect \"/> \"
+	send \"ls\n\"
+	expect \"/> \"
+	send \"cd /02_UNICODE\n\"
+	expect \"/> \"
+	send \"ls\n\"
+	expect \"/> \"
+	send \"cd /03_DELETE\n\"
+	expect \"/> \"
+	send \"ls\n\"
+	expect \"/> \"
+	send \"cluster 5\n\"
+	expect \"/> \"
+	send \"alloc 30\n\"
+	expect \"/> \"
+	send \"release 30\n\"
+	expect \"/> \"
+	send \"fat 2\n\"
+	expect \"/> \"
+	send \"cd /00_SIMPLE\n\"
+	expect \"/> \"
 	send \"create SAMPLE00.TXT\n\"
+	expect \"/> \"
+	send \"remove FILE.TXT\n\"
+	expect \"/> \"
+	send \"help\n\"
 	expect \"/> \"
 	send \"exit\n\"
 	"
@@ -21,9 +51,16 @@ function check_mount () {
 	sleep 5
 	sudo mount $1 mnt
 
-	if [ ! -e mnt/SAMPLE00.TXT ]; then
+	if [ ! -e mnt/00_SIMPLE/SAMPLE00.TXT ]; then
 		echo "SAMPLE00.TXT should be exist."
 		ls mnt
+		sudo umount mnt
+		exit 1
+	fi
+
+	if [ -e mnt/00_SIMPLE/FILE.TXT ]; then
+		echo "FILE.TXT shouldn't be exist."
+		ls mnt/00_SIMPLE
 		sudo umount mnt
 		exit 1
 	fi
