@@ -19,7 +19,13 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install autoconf automake libtool help2man make expect exfat-fuse
-    - name: check
-      run: ./02_simple_inetractive_check.sh
+    - name: strap
+      run: ./bootstrap.sh
+    - name: configure
+      run: ./configure
+    - name: make
+      run: make
+    - name: make check
+      run: make check
     - name: confirm result
-      run: cat *.log
+      run: cat tests/*.log
