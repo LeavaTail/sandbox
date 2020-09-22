@@ -10,8 +10,6 @@ function test_shell () {
 	expect \"/> \"
 	send \"create SAMPLE00.TXT\n\"
 	expect \"/> \"
-	send \"remove FILE.TXT\n\"
-	expect \"/> \"
 	send \"exit\n\"
 	"
 	echo ""
@@ -25,13 +23,6 @@ function check_mount () {
 
 	if [ ! -e mnt/SAMPLE00.TXT ]; then
 		echo "SAMPLE00.TXT should be exist."
-		ls mnt
-		sudo umount mnt
-		exit 1
-	fi
-
-	if [ -e mnt/FILE.TXT ]; then
-		echo "FILE.TXT shouldn't be exist."
 		ls mnt
 		sudo umount mnt
 		exit 1
