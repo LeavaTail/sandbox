@@ -17,7 +17,4 @@ function test_options () {
 }
 
 ### main function ###
-test_options fat12.img
-test_options fat16.img
-test_options fat32.img
 test_options exfat.img

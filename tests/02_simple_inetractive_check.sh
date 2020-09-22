@@ -24,6 +24,14 @@ function test_shell () {
 	expect \"/> \"
 	send \"ls\n\"
 	expect \"/> \"
+	send \"cluster 5\n\"
+	expect \"/> \"
+	send \"alloc 30\n\"
+	expect \"/> \"
+	send \"release 30\n\"
+	expect \"/> \"
+	send \"fat 2\n\"
+	expect \"/> \"
 	send \"cd /00_SIMPLE\n\"
 	expect \"/> \"
 	send \"create SAMPLE00.TXT\n\"
@@ -69,11 +77,5 @@ function check_mount () {
 }
 
 ### main function ###
-test_shell fat12.img
-check_mount fat12.img
-test_shell fat16.img
-check_mount fat16.img
-test_shell fat32.img
-check_mount fat32.img
 test_shell exfat.img
 check_mount exfat.img

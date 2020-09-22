@@ -8,8 +8,7 @@ debugfatfs_SOURCES = src/main.c \
 man_MANS = debugfatfs.8
 TESTS = tests/00_init.sh \
         tests/01_simple_option_check.sh \
-        tests/02_simple_inetractive_check.sh \
-        tests/03_simple_check_other.sh
+        tests/02_simple_inetractive_check.sh
 
 EXTRA_DIST = include
 
