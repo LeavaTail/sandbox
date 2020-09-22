@@ -28,7 +28,7 @@ jobs:
     - name: make
       run: make
     - name: check
-	  run: dmesg
+      run: dmesg
     - name: 00_tests
       run: ./tests/00_init.sh
     - name: 01_tests
