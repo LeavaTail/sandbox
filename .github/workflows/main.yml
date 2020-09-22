@@ -22,7 +22,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install autoconf automake libtool help2man make expect exfat-fuse
     - name: automake
-      run:  script/bootstrap.sh
+      run:  ./bootstrap.sh
     - name: configure
       run: ./configure
     - name: make
