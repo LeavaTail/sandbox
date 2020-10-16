@@ -47,6 +47,6 @@ jobs:
           VERSION: ${{ steps.bump_version.outputs.VERSION }}}}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./debugfatfs-${VERSION}.tar.gz
+          asset_path: ./debugfatfs-${{ steps.get_version.outputs.VERSION }}}.tar.gz
           asset_name: debugfatfs.tar.gz
           asset_content_type: application/gzip
