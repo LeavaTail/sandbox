@@ -44,8 +44,9 @@ jobs:
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.bump_version.outputs.VERSION }}}}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./debugfatfs-0.1.tar.gz
+          asset_path: ./debugfatfs-${VERSION}.tar.gz
           asset_name: debugfatfs.tar.gz
           asset_content_type: application/gzip
