@@ -39,6 +39,8 @@ jobs:
           prerelease: false
       - name: check list
         run: ls -l
+      - name: test
+        - run: echo ${{ github.ref }}
       - name: Get Name of Artifact
         run: |
           ARTIFACT_PATHNAME=$(ls debugfatfs-*.tar.gz | head -n 1)
