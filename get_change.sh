@@ -8,7 +8,8 @@ if [ $# -ne 1 ]; then
 fi
 
 FILE=CHANGELOG.md
-VERSION=`echo $1 | cut -b 2-`
+VER=`echo $1 | tr -d "refs/tags/"`
+VERSION=`echo ${VER} | tr -d v`
 
 grep ${VERSION} ${FILE} >/dev/null 2>&1
 read sline eline <<< \
