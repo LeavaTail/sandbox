@@ -40,7 +40,9 @@ jobs:
       - name: check list
         run: ls -l
       - name: test
-        - run: echo ${{ github.ref }}
+        run: |
+          echo ${{ github.ref }}
+          cat ./get_change.sh ${{ github.ref }}
       - name: Get Name of Artifact
         run: |
           ARTIFACT_PATHNAME=$(ls debugfatfs-*.tar.gz | head -n 1)
