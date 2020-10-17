@@ -23,6 +23,9 @@ jobs:
         run: make dist
         env:
           CI: true
+      - name: obtain changelog body
+        run: |
+          ./get_change.sh ${{ github.ref }} > body.md
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -31,18 +34,11 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+          bodyFile: "body.md"
           draft: false
           prerelease: false
       - name: check list
         run: ls -l
-      - name: test
-        run: |
-          echo ${{ github.ref }}
-          cat ./get_change.sh ${{ github.ref }}
       - name: Get Name of Artifact
         run: |
           ARTIFACT_PATHNAME=$(ls debugfatfs-*.tar.gz | head -n 1)
