@@ -712,7 +712,7 @@ static int exfat_traverse_directory(uint32_t clu)
 
 	for (i = 0; i < entries; i++) {
 		d = ((struct exfat_dentry *)data)[i];
-
+    
 		switch (d.EntryType) {
 			case DENTRY_UNUSED:
 				break;
