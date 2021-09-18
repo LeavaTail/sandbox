@@ -49,7 +49,7 @@ jobs:
       if: ${{ (matrix.msystem == 'MINGW32') && (matrix.compiler == 'clang') }}
     - run: ${{ matrix.compiler }} --version
     - name: automake
-      run:  script/bootstrap.sh
+      run:  ./script/bootstrap.sh
     - name: configure
       run: ./configure
     - run: make CC=${{ matrix.compiler }}
