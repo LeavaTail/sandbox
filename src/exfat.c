@@ -8,7 +8,6 @@
 #include <limits.h>
 #include <time.h>
 #include <ctype.h>
-
 #include "debugfatfs.h"
 
 /* Generic function prototype */
