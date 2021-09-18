@@ -43,8 +43,6 @@ jobs:
       with:
         msystem: ${{ matrix.msystem }}
         install: make
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.2
     - run: pacman --noconfirm -S gcc
       if: ${{ matrix.compiler == 'gcc' }}
     - run: pacman --noconfirm -S mingw-w64-x86_64-clang
@@ -52,7 +50,9 @@ jobs:
     - run: pacman --noconfirm -S mingw-w64-i686-clang
       if: ${{ (matrix.msystem == 'MINGW32') && (matrix.compiler == 'clang') }}
     - run: ${{ matrix.compiler }} --version
-    - run: pacman --noconfirm -S autoconf,bison,
+    - name: Install cygwin additional packages
+      run: |
+        C:\tools\cygwin\cygwinsetup.exe -qgnNdO -R C:/tools/cygwin -l C:/tools/cygwin/package -s http://mirrors.kernel.org/sourceware/cygwin/ -P autoconf,bison,gcc-core
     - name: automake
       run:  bash ./script/bootstrap.sh
     - name: configure
