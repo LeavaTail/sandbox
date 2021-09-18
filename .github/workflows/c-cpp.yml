@@ -32,5 +32,3 @@ jobs:
       run: make
     - name: make check
       run: make check
-    - name: confirm result
-      run: cat tests/*.log
