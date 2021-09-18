@@ -52,6 +52,7 @@ jobs:
     - run: pacman --noconfirm -S mingw-w64-i686-clang
       if: ${{ (matrix.msystem == 'MINGW32') && (matrix.compiler == 'clang') }}
     - run: ${{ matrix.compiler }} --version
+    - run: pacman --noconfirm -S autoconf,bison,
     - name: automake
       run:  bash ./script/bootstrap.sh
     - name: configure
