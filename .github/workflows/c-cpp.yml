@@ -23,12 +23,12 @@ jobs:
     - name: automake
       run:  script/bootstrap.sh
     - name: configure
-	  env:
-	    CC: ${{ matrix.compiler }}
+      env:
+        CC: ${{ matrix.compiler }}
       run: ./configure
     - name: make
-	  env:
-	    CC: ${{ matrix.compiler }}
+      env:
+        CC: ${{ matrix.compiler }}
       run: make
     - name: make check
       run: make check
