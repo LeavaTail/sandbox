@@ -6,12 +6,12 @@ debugfatfs_SOURCES = src/main.c \
                      src/exfat.c
 
 man_MANS = debugfatfs.8
-TESTS = tests/00_init.sh \
-        tests/01_simple_option_check.sh \
-        tests/02_simple_inetractive_check.sh \
-        tests/03_simple_check_other.sh
+#TESTS = tests/00_init.sh \
+#        tests/01_simple_option_check.sh \
+#        tests/02_simple_inetractive_check.sh \
+#        tests/03_simple_check_other.sh
 
-EXTRA_DIST = include
+EXTRA_DIST = include tests
 
 AM_CPPFLAGS = -I$(top_srcdir)/include
 if DEBUG

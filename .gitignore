@@ -1,19 +1,15 @@
 # autotools
 autom4te.cache/
-config.h
 compile*
 config.status*
-configure
 depcomp*
-install-sh*
+install-sh~
 missing*
 COPYING
 INSTALL
 Makefile
-Makefile.in
 aclocal.m4
 autoscan.log
-config.h.in
 config.log
 stamp-h1
 config.h.in~
