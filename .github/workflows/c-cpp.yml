@@ -6,12 +6,11 @@ on:
   pull_request:
     branches: [ master, develop ]
 
-strategy:
-  matrix:
-    compiler: [gcc, clang]
 jobs:
   build:
-
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
     runs-on: ubuntu-latest
 
     steps:
