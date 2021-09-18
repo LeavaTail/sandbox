@@ -43,6 +43,8 @@ jobs:
       with:
         msystem: ${{ matrix.msystem }}
         install: make
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
     - run: pacman --noconfirm -S gcc
       if: ${{ matrix.compiler == 'gcc' }}
     - run: pacman --noconfirm -S mingw-w64-x86_64-clang
