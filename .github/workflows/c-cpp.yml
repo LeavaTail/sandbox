@@ -32,11 +32,11 @@ jobs:
         sudo apt-get install autoconf automake libtool help2man make expect
     - name: setup compiler (for armhf)
       run: |
-      if: ${{ matrix.include.arch == 'arm' }}
+      if: ${{ matrix.arch == 'arm' }}
         sudo apt-get install crossbuild-essential-armhf  
     - name: setup compiler (for arm64)
       run: |
-      if: ${{ matrix.include.arch == 'arm64' }}
+      if: ${{ matrix.arch == 'arm64' }}
         sudo apt-get install crossbuild-essential-arm64
     - name: automake
       run:  script/bootstrap.sh
