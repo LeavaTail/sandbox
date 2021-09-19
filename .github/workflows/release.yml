@@ -21,7 +21,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install autoconf automake libtool help2man make dh-make
       - name: install cross compiler
-        if: ${{ matrix.arch != amd64 }}
+        if: ${{ matrix.arch  }} != 'amd64'
         run: |
           sudo apt-get install crossbuild-essential-${{ arch }}
       - name: automake
