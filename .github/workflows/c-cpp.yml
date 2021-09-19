@@ -32,7 +32,10 @@ jobs:
     - name: make check
       run: make check
     - if: always()
-      name: see log files
-      run: |
-        ls -la ./
-        ls -la ./tests/
+      uses: actions/upload-artifact@v2
+        with:
+          name: logs/
+          path: |
+            test-suite.log
+            tests/*.log
+          retention-days: 1

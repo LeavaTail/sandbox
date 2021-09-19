@@ -65,9 +65,9 @@ jobs:
           prerelease: false
       - name: test
         run: |
-          mkdir -p output
-          ls -l
-          mv debugfatfs_*.deb output
+          mkdir -p ../output
+          ls -l ../
+          mv debugfatfs_*.deb ../output
       - name: Create Release
         uses: actions/github-script@v2
         with:
@@ -87,7 +87,7 @@ jobs:
 
             console.log('created release', { release });
 
-            for (let file of await fs.readdir('./output/')) {
+            for (let file of await fs.readdir('../output/')) {
               // do whatever filtering you want here, I'm just uploading all the files
               console.log('uploading', file);
 
@@ -95,23 +95,6 @@ jobs:
                 owner, repo,
                 release_id: release.data.id,
                 name: file,
-                data: await fs.readFile(`./output/${file}`)
+                data: await fs.readFile(`../output/${file}`)
               });
             }
-
-      - name: Get Name of Artifact
-        run: |
-          ARTIFACT_PATHNAME=$(ls debugfatfs_*.deb)
-          ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
-          echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
-          echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.ARTIFACT_PATHNAME }}
-          asset_name: ${{ env.ARTIFACT_NAME }}
-          asset_content_type: application/gzip
