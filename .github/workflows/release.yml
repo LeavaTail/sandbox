@@ -27,6 +27,8 @@ jobs:
       run: make dist
       env:
         CI: true
+    - name: package
+      run: dpkg-buildpackage -b -us -uc -rfakeroot
     - name: obtain body
       run: |
         ./scripts/get_changelog.sh ${{ github.ref }} > body.md
