@@ -1,89 +1,91 @@
 # Changelog
 
-## [0.4.0] - 2020-11-22
+## [0.1.8] - 2021-09-02
 
-### Added
+## Added
 
-- Support new cluster in create/remove/trim
-
-### Fixed
-
-- FAT entry 0x1 is invalid in FAT
-
-## [0.3.0] - 2020-11-22
-
-### Added
-
-- Support new cluster in create/remove/trim
+- aaa
 
 ### Fixed
 
-- FAT entry 0x1 is invalid in FAT
+- bbb
 
-## [0.2.0] - 2020-11-22
+## [0.1.7] - 2021-09-02
 
-### Added
+## Added
 
-- Quite mode suppress message by statfs()
-- Consider NoFatChain Field in exFAT filesystem
-- Update directory entry API
-- Allow to no-operand timezone
-- Update filesize in alloc/free cluster
-- Check Upcase-Table checksum
-- Support new cluster in create/remove/trim
+- aaa
 
 ### Fixed
 
-- Unexpected update Allocation Bitmap in memory
-- Failed to check bit in ActiveFAT
-- Invalid check whether directory was loaded in FAT
-- Flush only fisrt cluster chain
-- DIR_FileSize must always be 0 in Direcotry in FAT
-- Invalid Detemination of FAT12 entry for a cluster
-- FAT entry 0x1 is invalid in FAT
+- bbb
 
-## [0.2.0] - 2020-11-22
+## [0.1.6] - 2021-09-02
 
-### Added
+## Added
 
-- Quite mode suppress message by statfs()
-- Consider NoFatChain Field in exFAT filesystem
-- Update directory entry API
-- Allow to no-operand timezone
-- Update filesize in alloc/free cluster
-- Check Upcase-Table checksum
-- Support new cluster in create/remove/trim
+- aaa
 
 ### Fixed
 
-- Unexpected update Allocation Bitmap in memory
-- Failed to check bit in ActiveFAT
-- Invalid check whether directory was loaded in FAT
-- Flush only fisrt cluster chain
-- DIR_FileSize must always be 0 in Direcotry in FAT
-- Invalid Detemination of FAT12 entry for a cluster
-- FAT entry 0x1 is invalid in FAT
+- bbb
 
-## [0.1.1] - 2020-11-07
+## [0.1.5] - 2021-09-02
+
+## Added
+
+- aaa
 
 ### Fixed
 
-- Unexpected update Allocation Bitmap in memory
-- Not Flush Allocation Bitmap to Disk
+- aaa
 
-## [0.1.0] - 2020-10-24
+## [0.1.4] - 2021-09-01
+
+## Added
+
+- aaa
+- aaa
+- aaa
+- aaa
+
+### Fixed
+
+- aaa
+
+## [0.1.3] - 2021-09-01
+
+## Added
+
+- aaa
+
+### Fixed
+
+- aaa
+
+## [0.1.2] - 2021-06-28
+
+## Added
+
+- aaa
+
+### Fixed
+
+- aaa
+
+## [0.1.1] - 2021-06-28
+
+### Fixed
+
+- Fix to store the number of ClusterCount
+- statexfat: Fix to output cluster size
+
+## [0.1.0] - 2021-05-15
 
 ### Added
 
-- Print main Boot Sector field
-- Print any cluster
-- Print Directory list
-- Backup or restore FAT volume
-- Convert into update latter
-- Create file
-- Remove file
-- Change any FAT entry
-- Change any allocation bitmap
-- Trim deleted directory entry
+- checkexfat: Initial version
+- statfsexfat: Initial version
+- lsexfat: Initial version
 
 ## Initial Version
