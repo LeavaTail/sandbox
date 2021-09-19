@@ -28,11 +28,11 @@ jobs:
         echo "${{ matrix.os }} ==> debug"
         echo "${{ matrix.arch }} ==> debug"
     - name: setup compiler (for armhf)
+      if: ${{ matrix.arch  == 'arm' }}
       run: |
-      if: ${{ matrix.arch }} == 'arm'
         sudo apt-get install crossbuild-essential-armhf  
     - name: setup compiler (for arm64)
+      if: ${{ matrix.arch  == 'arm64' }}
       run: |
-      if: ${{ matrix.arch }} == 'arm64'
         echo 'HOGEHOG'
         sudo apt-get install crossbuild-essential-arm64
