@@ -22,17 +22,11 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v2
-    - name: setup environment
-      run: |
-        sudo apt-get update
-        sudo apt-get install autoconf automake libtool help2man make expect
-    - name: Set selected color
-      run: echo '::set-output name=SELECTED_COLOR::green $matrix'
     - name: debug
       run: |
         echo "${{ matrix }} ==> debug"
         echo "${{ matrix.os }} ==> debug"
+        echo "${{ matrix.arch }} ==> debug"
     - name: setup compiler (for armhf)
       run: |
       if: ${{ matrix.arch == 'arm' }}
