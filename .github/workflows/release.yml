@@ -33,7 +33,7 @@ jobs:
         run: |
           mkdir -p outputs
           mv ../debugfatfs_*.deb outputs
-        if: always()
+      - if: always()
         uses: actions/upload-artifact@v2
         with:
           name: outputs
