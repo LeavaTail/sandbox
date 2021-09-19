@@ -31,7 +31,8 @@ jobs:
       run: make
     - name: make check
       run: make check
-    - name: check
+    - if: always()
+      name: see log files
       run: |
         ls -la ./
         ls -la ./tests/

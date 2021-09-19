@@ -66,7 +66,8 @@ jobs:
       - name: test
         run: |
           mkdir -p output
-          mv debugfatfs_*.dev output
+          ls -l
+          mv debugfatfs_*.deb output
       - name: Create Release
         uses: actions/github-script@v2
         with:
