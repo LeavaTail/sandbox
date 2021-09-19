@@ -37,6 +37,7 @@ jobs:
     - name: setup compiler (for arm64)
       run: |
       if: ${{ matrix.arch == 'arm64' }}
+        echo 'HOGEHOG'
         sudo apt-get install crossbuild-essential-arm64
     - name: automake
       run:  script/bootstrap.sh
