@@ -14,13 +14,10 @@ jobs:
         include:
           - os: ubuntu-latest
             arch: 'amd64'
-            target: x86_64-linux-gnu
           - os: ubuntu-latest
             arch: 'arm'
-            target: x86_64_linux-gnuebihf-
           - os: ubuntu-latest
             arch: 'arm64'
-            target: x86_64_linux-gnuebihf-
 
     runs-on: ${{ matrix.os }}
 
@@ -35,6 +32,7 @@ jobs:
     - name: debug
       run: |
         echo "${{ matrix }} ==> debug"
+        echo "${{ matrix.os }} ==> debug"
     - name: setup compiler (for armhf)
       run: |
       if: ${{ matrix.arch == 'arm' }}
@@ -44,9 +42,3 @@ jobs:
       if: ${{ matrix.arch == 'arm64' }}
         echo 'HOGEHOG'
         sudo apt-get install crossbuild-essential-arm64
-    - name: automake
-      run:  script/bootstrap.sh
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
