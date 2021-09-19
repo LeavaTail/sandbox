@@ -71,14 +71,22 @@ jobs:
       - name: Create Release
         uses: actions/github-script@v2
         with:
-            const path = require('path');
-            const fs = require('fs');
-            const release_id = '${{ needs.create_release.outputs.id }}';
-
-            for (let file of await fs.readdirSync('../output/')) {
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            console.log('environment', process.versions);
+            const fs = require('fs').promises;
+            const { repo: { owner, repo }, sha } = context;
+            console.log({ owner, repo, sha });
+            const release = await github.repos.createRelease({
+              owner, repo,
+              tag_name: process.env.GITHUB_REF,
+              draft: true,
+              target_commitish: sha
+            });
+            console.log('created release', { release });
+            for (let file of await fs.readdir('../output/')) {
               // do whatever filtering you want here, I'm just uploading all the files
               console.log('uploading', file);
-
               await github.repos.uploadReleaseAsset({
                 owner, repo,
                 release_id: release.data.id,
