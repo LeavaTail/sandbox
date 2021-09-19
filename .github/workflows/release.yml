@@ -23,11 +23,11 @@ jobs:
       - name: install cross compiler
         if: ${{ matrix.arch  }} != 'amd64'
         run: |
-          sudo apt-get install crossbuild-essential-${{ arch }}
+          sudo apt-get install crossbuild-essential-${{ matrix.arch }}
       - name: automake
         run: ./scripts/bootstrap.sh
       - name: package
-        run: dpkg-buildpackage -b -us -uc -d -rfakeroot --host-arch ${{ arch }}
+        run: dpkg-buildpackage -b -us -uc -d -rfakeroot --host-arch ${{ matrix.arch }}
       - name: obtain body
         run: |
           ./scripts/get_changelog.sh ${{ github.ref }} > body.md
