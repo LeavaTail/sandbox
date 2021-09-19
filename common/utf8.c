@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- *  Copyright (C) 2020 LeavaTail
+ *  Copyright (C) 2021 LeavaTail
  */
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
-#include "nls.h"
+#include "utf8.h"
 
 /**
  * utf8_to_utf32 - convert UTF-8 character to UTF-32
@@ -152,3 +152,4 @@ int utf16s_to_utf8s(uint16_t *src, uint16_t namelen, unsigned char* dist)
 	}
 	return len;
 }
+

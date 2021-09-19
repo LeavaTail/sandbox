@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- *  Copyright (C) 2020 LeavaTail
+ *  Copyright (C) 2021 LeavaTail
  */
 #ifndef _NLS_H
 #define _NLS_H
@@ -18,3 +18,4 @@ int utf8s_to_utf16s(unsigned char *src, uint16_t namelen, uint16_t *dist);
 int utf16s_to_utf8s(uint16_t *, uint16_t, unsigned char *);
 
 #endif /*_NLS_H */
+
