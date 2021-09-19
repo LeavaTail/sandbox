@@ -13,13 +13,13 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            arch: amd64
+            arch: 'amd64'
             target: x86_64-linux-gnu
           - os: ubuntu-latest
-            arch: arm
+            arch: 'arm'
             target: x86_64_linux-gnuebihf-
           - os: ubuntu-latest
-            arch: arm64
+            arch: 'arm64'
             target: x86_64_linux-gnuebihf-
 
     runs-on: ${{ matrix.os }}
