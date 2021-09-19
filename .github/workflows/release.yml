@@ -63,6 +63,41 @@ jobs:
           body_path: "contents.md"
           draft: false
           prerelease: false
+      - name: test
+        run: |
+          mkdir -p output
+          mv debugfatfs_*.dev output
+      - name: Create Release
+        uses: actions/github-script@v2
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            console.log('environment', process.versions);
+            const fs = require('fs').promises;
+            const { repo: { owner, repo }, sha } = context;
+            console.log({ owner, repo, sha });
+
+            const release = await github.repos.createRelease({
+              owner, repo,
+              tag_name: process.env.GITHUB_REF,
+              draft: true,
+              target_commitish: sha
+            });
+
+            console.log('created release', { release });
+
+            for (let file of await fs.readdir('./output/')) {
+              // do whatever filtering you want here, I'm just uploading all the files
+              console.log('uploading', file);
+
+              await github.repos.uploadReleaseAsset({
+                owner, repo,
+                release_id: release.data.id,
+                name: file,
+                data: await fs.readFile(`./output/${file}`)
+              });
+            }
+
       - name: Get Name of Artifact
         run: |
           ARTIFACT_PATHNAME=$(ls debugfatfs_*.deb)
