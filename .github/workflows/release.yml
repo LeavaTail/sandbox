@@ -8,27 +8,22 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        arch:
-          - amd64
-          - armhf
-          - arm64
-        include:
-          - arch: amd64
-            cc: ""
-          - arch: armhf
-            cc: crossbuild-essential-armhf
-          - arch: arm64
-            cc: crossbuild-essential-arm64
-    runs-on: ubuntu-latest
+        arch: [amd64, armhf, arm64]
 
     steps:
       - uses: actions/checkout@v2
       - name: setup environment
         run: |
           sudo apt-get update
-          sudo apt-get install autoconf automake libtool help2man make dh-make ${{ cc }}
+          sudo apt-get install autoconf automake libtool help2man make dh-make
+      - name: install cross compiler
+        if: matrix.arch != amd64
+        run: |
+          sudo apt-get install crossbuild-essential-${{ arch }}
       - name: automake
         run: ./scripts/bootstrap.sh
       - name: package
