@@ -22,6 +22,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install autoconf automake libtool help2man make dh-make
+          gcc --version
       - name: install cross compiler
         if: ${{ matrix.arch  }} != 'amd64'
         run: |
@@ -34,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: outputs
-          path: ${{ github.workspace }}/../debugfatfs_*.deb
+          path: ../debugfatfs_*.deb
 
       - name: obtain body
         run: |
