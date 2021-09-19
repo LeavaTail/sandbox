@@ -19,16 +19,8 @@ jobs:
         sudo apt-get install autoconf automake libtool help2man make
     - name: automake
       run: ./scripts/bootstrap.sh
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: generate Distribution
-      run: make dist
-      env:
-        CI: true
     - name: package
-      run: dpkg-buildpackage -b -us -uc -rfakeroot
+      run: dpkg-buildpackage -b -us -uc -d -rfakeroot
     - name: obtain body
       run: |
         ./scripts/get_changelog.sh ${{ github.ref }} > body.md
