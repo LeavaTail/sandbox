@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build package
+    name: Build
     strategy:
       matrix:
         include:
@@ -32,6 +32,9 @@ jobs:
         sudo apt-get install autoconf automake libtool help2man make expect
     - name: Set selected color
       run: echo '::set-output name=SELECTED_COLOR::green $matrix'
+    - name: debug
+      run: |
+        echo "${{ matrix }} ==> debug"
     - name: setup compiler (for armhf)
       run: |
       if: ${{ matrix.arch == 'arm' }}
