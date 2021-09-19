@@ -16,11 +16,11 @@ jobs:
           - arm64
         include:
           - arch: amd64
-            cross: ""
+            cc: ""
           - arch: armhf
-            cross: crossbuild-essential-armhf
+            cc: crossbuild-essential-armhf
           - arch: arm64
-            cross: crossbuild-essential-arm64
+            cc: crossbuild-essential-arm64
     runs-on: ubuntu-latest
 
     steps:
@@ -28,11 +28,11 @@ jobs:
       - name: setup environment
         run: |
           sudo apt-get update
-          sudo apt-get install autoconf automake libtool help2man make dh-make ${{ cross }}
+          sudo apt-get install autoconf automake libtool help2man make dh-make ${{ cc }}
       - name: automake
         run: ./scripts/bootstrap.sh
       - name: package
-        run: dpkg-buildpackage -b -us -uc -d -rfakeroot
+        run: dpkg-buildpackage -b -us -uc -d -rfakeroot --host-arch ${{ arch }}
       - name: obtain body
         run: |
           ./scripts/get_changelog.sh ${{ github.ref }} > body.md
@@ -49,7 +49,7 @@ jobs:
           prerelease: false
       - name: Get Name of Artifact
         run: |
-          ARTIFACT_PATHNAME=$(ls exfat-rawtools-*.tar.gz | head -n 1)
+          ARTIFACT_PATHNAME=$(ls exfat-rawtools-*.tar.gz)
           ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
           echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
           echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
