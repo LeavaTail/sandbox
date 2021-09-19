@@ -1,10 +1,12 @@
 name: Create Release
 
 on:
+#  push:
+#    # Sequence of patterns matched against refs/tags
+#    tags:
+#      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
   push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    branches: [ master, develop ]    
 
 jobs:
   build:
@@ -28,6 +30,12 @@ jobs:
         run: ./scripts/bootstrap.sh
       - name: package
         run: dpkg-buildpackage -b -us -uc -d -rfakeroot --host-arch ${{ matrix.arch }}
+      - if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: outputs
+          path: ${{ github.workspace }}/../debugfatfs_*.deb
+
       - name: obtain body
         run: |
           ./scripts/get_changelog.sh ${{ github.ref }} > body.md
