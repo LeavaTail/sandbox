@@ -34,15 +34,12 @@ jobs:
     - name: setup compiler (for amd64)
       if: ${{ matrix.arch  == 'amd64' }}
       run: |
-    - name: setup compiler (for armhf)
-      if: ${{ matrix.arch  == 'amd64' }}
-      run: |
         ./configure
     - name: setup compiler (for armhf)
       if: ${{ matrix.arch  == 'arm' }}
       run: |
         sudo apt-get install crossbuild-essential-armhf  
-        ./configure --host=arm-linux-gnueabihf
+        ./configure --host=${matrix.cross}
     - name: setup compiler (for arm64)
       if: ${{ matrix.arch  == 'arm64' }}
       run: |
