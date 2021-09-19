@@ -39,7 +39,7 @@ jobs:
       if: ${{ matrix.arch  == 'arm' }}
       run: |
         sudo apt-get install crossbuild-essential-armhf  
-        ./configure --host=${matrix.cross}
+        ./configure --host=${{ matrix.cross }}
     - name: setup compiler (for arm64)
       if: ${{ matrix.arch  == 'arm64' }}
       run: |
