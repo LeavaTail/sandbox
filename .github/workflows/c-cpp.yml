@@ -16,23 +16,37 @@ jobs:
             arch: 'amd64'
           - os: ubuntu-latest
             arch: 'arm'
+            cross: arm-linux-gnueabihf
           - os: ubuntu-latest
             arch: 'arm64'
+            cross: aarch64-linux-gnu
 
     runs-on: ${{ matrix.os }}
 
     steps:
-    - name: debug
+    - uses: actions/checkout@v2
+    - name: setup environment
       run: |
-        echo "${{ matrix }} ==> debug"
-        echo "${{ matrix.os }} ==> debug"
-        echo "${{ matrix.arch }} ==> debug"
+        sudo apt-get update
+        sudo apt-get install autoconf automake libtool help2man make expect    
+    - name: automake
+      run:  script/bootstrap.sh
+    - name: setup compiler (for amd64)
+      if: ${{ matrix.arch  == 'amd64' }}
+      run: |
+    - name: setup compiler (for armhf)
+      if: ${{ matrix.arch  == 'amd64' }}
+      run: |
+        ./configure
     - name: setup compiler (for armhf)
       if: ${{ matrix.arch  == 'arm' }}
       run: |
         sudo apt-get install crossbuild-essential-armhf  
+        ./configure --host=arm-linux-gnueabihf
     - name: setup compiler (for arm64)
       if: ${{ matrix.arch  == 'arm64' }}
       run: |
-        echo 'HOGEHOG'
         sudo apt-get install crossbuild-essential-arm64
+        ./configure --host=aarch64-linux-gnu
+    - name: make
+      run: make        
