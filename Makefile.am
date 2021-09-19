@@ -18,7 +18,8 @@ man_MANS = checkexfat.8 statfsexfat.8 lsexfat.8
 TESTS = tests/00_init.sh \
         tests/01_test_checkexfat.sh \
         tests/02_test_statfsexfat.sh \
-        tests/03_test_lsexfat.sh
+        tests/03_test_lsexfat.sh \
+        tests/04_wrong_script.sh
 
 EXTRA_DIST = common
 AM_CPPFLAGS = -I$(top_srcdir)/common

@@ -31,3 +31,7 @@ jobs:
       run: make
     - name: make check
       run: make check
+    - name: check
+      run: |
+        ls -la ./
+        ls -la ./tests/
