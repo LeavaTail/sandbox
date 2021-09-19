@@ -31,11 +31,15 @@ jobs:
         run: ./scripts/bootstrap.sh
       - name: package
         run: dpkg-buildpackage -b -us -uc -d -rfakeroot --host-arch ${{ matrix.arch }}
+      - name: mkdir
+        run: |
+          mkdir output
+          mv ../debugfatfs_*.deb output
       - if: always()
         uses: actions/upload-artifact@v2
         with:
           name: outputs
-          path: ../debugfatfs_*.deb
+          path: output/debugfatfs_*.deb
 
       - name: obtain body
         run: |
