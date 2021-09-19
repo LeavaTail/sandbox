@@ -13,8 +13,13 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
+            arch: amd64
             target: x86_64-linux-gnu
           - os: ubuntu-latest
+            arch: arm
+            target: x86_64_linux-gnuebihf-
+          - os: ubuntu-latest
+            arch: arm64
             target: x86_64_linux-gnuebihf-
 
     runs-on: ${{ matrix.os }}
@@ -24,12 +29,18 @@ jobs:
     - name: setup environment
       run: |
         sudo apt-get update
-        sudo apt-get install autoconf automake libtool help2man make expect exfat-fuse
+        sudo apt-get install autoconf automake libtool help2man make expect
+    - name: setup compiler (for armhf)
+      run: |
+      if: ${{ arch == 'arm' }}
+        sudo apt-get install crossbuild-essential-armhf  
+    - name: setup compiler (for armhf)
+      run: |
+      if: ${{ arch == 'arm64' }}
+        sudo apt-get install crossbuild-essential-arm64
     - name: automake
       run:  script/bootstrap.sh
     - name: configure
       run: ./configure
     - name: make
       run: make
-    - name: make check
-      run: make check
