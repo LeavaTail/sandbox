@@ -33,41 +33,10 @@ jobs:
         run: dpkg-buildpackage -b -us -uc -d -rfakeroot --host-arch ${{ matrix.arch }}
       - name: mkdir
         run: |
-          mkdir output
+          mkdir -p output
           mv ../debugfatfs_*.deb output
       - if: always()
         uses: actions/upload-artifact@v2
         with:
           name: outputs
           path: output/debugfatfs_*.deb
-
-      - name: obtain body
-        run: |
-          ./scripts/get_changelog.sh ${{ github.ref }} > body.md
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body_path: "body.md"
-          draft: false
-          prerelease: false
-      - name: Get Name of Artifact
-        run: |
-          ARTIFACT_PATHNAME=$(ls ../debugfatfs_*.deb)
-          ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
-          echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
-          echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.ARTIFACT_PATHNAME }}
-          asset_name: ${{ env.ARTIFACT_NAME }}
-          asset_content_type: application/gzip
