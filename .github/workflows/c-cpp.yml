@@ -8,10 +8,22 @@ on:
 
 jobs:
   build:
+    continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
-        compiler: [gcc, arm-linux-gnueabihf-gcc, aarch64-linux-gnu-gcc, clang]
+        include:
+          - compiler: gcc,
+            native: true
+          - comliler: clang
+            native: true
+          - compiler: arm-linux-gnueabihf-gcc
+            native: false
+            arch: armhf
+          - compiler: aarch64-linux-gnu-gcc
+            native: false
+            arch: arm64
+      
     runs-on: ubuntu-latest
 
     steps:
@@ -20,6 +32,8 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install autoconf automake libtool help2man make expect
+    - if: ${{ $matrix.native }} == false
+      run:  sudo apt-get install crossbuild-essential-${{ matrix.arch }}
     - name: automake
       run:  scripts/bootstrap.sh
     - name: configure
