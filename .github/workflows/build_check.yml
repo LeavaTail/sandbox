@@ -25,12 +25,17 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install autoconf automake libtool help2man make
-    - name: install cross compiler
-      if: ${{ matrix.arch }} != 'amd64'
-      run: sudo apt-get install crossbuild-essential-${{ matrix.arch }}
     - name: automake
       run: ./scripts/bootstrap.sh
-    - name: configure
-      run: ./configure CFLAGS=-Werror --host=${{ matrix.cross }} 
+    - name: native compiler
+      if: ${{ matrix.arch }} == 'amd64'
+      run: | 
+        sudo apt-get install crossbuild-essential-${{ matrix.arch }}
+        ./configure CFLAGS=-Werror
+    - name: cross compiler
+      if: ${{ matrix.arch }} != 'amd64'
+      run: | 
+        sudo apt-get install crossbuild-essential-${{ matrix.arch }}
+        ./configure CFLAGS=-Werror --host=${{ matrix.cross }} 
     - name: make
       run: make
