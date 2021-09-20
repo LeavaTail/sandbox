@@ -52,17 +52,6 @@ jobs:
       - name: obtain contents
         run: |
           ./scripts/get_changelog.sh ${{ github.ref }} > contents.md
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body_path: "contents.md"
-          draft: false
-          prerelease: false
       - name: test
         run: |
           mkdir -p ../output
@@ -78,18 +67,21 @@ jobs:
             const { repo: { owner, repo }, sha } = context;
             console.log({ owner, repo, sha });
             const release = await github.repos.createRelease({
-              owner, repo,
+              owner,
+              repo,
               tag_name: process.env.GITHUB_REF,
-              draft: true,
+              draft: false,
               target_commitish: sha,
-              body: await fs.readFile(`contents.md`)
+              body_path: contents.md
             });
             console.log('created release', { release });
             for (let file of await fs.readdir('../output/')) {
               // do whatever filtering you want here, I'm just uploading all the files
               console.log('uploading', file);
               await github.repos.uploadReleaseAsset({
-                owner, repo,
+                owner, 
+                repo,
+                tag_name,
                 release_id: release.data.id,
                 name: file,
                 data: await fs.readFile(`../output/${file}`)
