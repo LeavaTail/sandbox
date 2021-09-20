@@ -82,6 +82,7 @@ jobs:
               tag_name: process.env.GITHUB_REF,
               draft: true,
               target_commitish: sha
+              bosy: contents.md
             });
             console.log('created release', { release });
             for (let file of await fs.readdir('../output/')) {
