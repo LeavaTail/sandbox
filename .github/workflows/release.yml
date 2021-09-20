@@ -81,7 +81,7 @@ jobs:
               owner, repo,
               tag_name: process.env.GITHUB_REF,
               draft: true,
-              target_commitish: sha
+              target_commitish: sha,
               body: await fs.readFile(`contents.md`)
             });
             console.log('created release', { release });
