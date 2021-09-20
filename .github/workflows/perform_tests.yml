@@ -41,14 +41,14 @@ jobs:
     needs: [build]
     steps:
     - name: make check
-      run: make check; pwd
+      run: make check
     - name: copy
       if: always()
       run: |
          pwd
-         ls -la
-         ls -la ../
-         ls -la ../../
+         ls -la ${{ GITHUB_WORKSPACE }}
+         ls -la ${{ GITHUB_EVENT_PATH }}
+         ls -la .
 #        mkdir -p ../logs/${{ matrix.compiler }}
 #        cp ./test-suite.log ../logs/${{ matrix.compiler }}
 #        mv tests/*.log ../logs/${{ matrix.compiler }}
