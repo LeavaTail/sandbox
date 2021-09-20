@@ -1,10 +1,8 @@
-name: Run Test
+name: Perform Test
 
 on:
-  push:
-    branches: [ master, develop ]
   pull_request:
-    branches: [ master, develop ]
+    branches: [ main, develop, release ]
 
 jobs:
   build:
@@ -12,10 +10,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04]
-        compiler: [gcc, clang]
-      
-    runs-on: ${{ matrix.os }}
+      matrix:
+        arch: [amd64, armhf, arm64]
+        include:
+        - arch: amd64
+          cc: ''
+        - arch: armhf
+          cc: arm-linux-gnueabihf
+        - arch: arm64
+          cc: aarch64-linux-gnu
+
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -24,23 +29,24 @@ jobs:
         sudo apt-get update
         sudo apt-get install autoconf automake libtool help2man make expect
     - name: automake
-      run:  scripts/bootstrap.sh
-    - name: configure
-      env:
-        CC: ${{ matrix.compiler }}
-      run: ./configure
+      run: ./scripts/bootstrap.sh
+    - name: native compiler
+      if: ${{ matrix.arch }} == 'amd64'
+      run: | 
+        ./configure
+    - name: cross compiler
+      if: ${{ matrix.arch }} != 'amd64'
+      run: | 
+        sudo apt-get install crossbuild-essential-${{ matrix.arch }}
+        ./configure --host=${{ matrix.cc }}
     - name: make
-      env:
-        CC: ${{ matrix.compiler }}
       run: make
-    - name: make check 
-      run: make check || cp ./test-suite.log ../
-    - name: check
-      run: mv ../test-suite.log ./
+    - name: make check
+      run: make check || ./correct_log.sh ${{ matrix.arch }}
     - if: always()
       uses: actions/upload-artifact@v2
       with:
         name: logs
         path: |
-          test-suite.log
+          logs
         retention-days: 1
