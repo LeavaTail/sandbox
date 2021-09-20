@@ -38,7 +38,10 @@ jobs:
       run: make check
     - if: always()
       run: |
-        cp ./test-suite.log ../logs/${{ matrix.compiler }}
+         pwd
+         ls -la
+
+#        cp ./test-suite.log ../logs/${{ matrix.compiler }}
 #        mv tests/*.log ../logs/${{ matrix.compiler }}
 
   after-build:
