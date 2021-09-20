@@ -33,6 +33,15 @@ jobs:
       env:
         CC: ${{ matrix.compiler }}
       run: make
+    - name: copy12
+      if: always()
+      run: |
+         pwd
+         echo "${PUBLICENV}"
+         echo "${JOBENV}"
+         echo "${STEPENV}"
+         echo "${GITHUB_EVENT_PATH}"
+         echo "${GITHUB_WORKSPACE}"
 
   test:
     continue-on-error: true
@@ -46,9 +55,11 @@ jobs:
       if: always()
       run: |
          pwd
-         ls -la ${{ GITHUB_WORKSPACE }}
-         ls -la ${{ GITHUB_EVENT_PATH }}
-         ls -la .
+         echo "${PUBLICENV}"
+         echo "${JOBENV}"
+         echo "${STEPENV}"
+         echo "${GITHUB_EVENT_PATH}"
+         echo "${GITHUB_WORKSPACE}"
 #        mkdir -p ../logs/${{ matrix.compiler }}
 #        cp ./test-suite.log ../logs/${{ matrix.compiler }}
 #        mv tests/*.log ../logs/${{ matrix.compiler }}
