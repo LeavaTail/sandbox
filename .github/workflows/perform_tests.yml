@@ -48,11 +48,11 @@ jobs:
 
     steps:
       - name: check
-        run: pwd
+        run: ls -la ../
       - if: always()
         uses: actions/upload-artifact@v2
         with:
           name: logs
           path: |
-            logs
+            ../test-suite.log
           retention-days: 1
