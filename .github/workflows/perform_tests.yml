@@ -38,9 +38,9 @@ jobs:
     - name: copy
       if: always()
       run: |
-         pwd
-         ls -la ./
-         ls -la ../
+         mkdir -p ../logs
+         cp ./test-suite.log ../logs
+         cp ./tests/*.log ../logs
 
   artifact:
     runs-on: ubuntu-latest
