@@ -34,7 +34,8 @@ jobs:
       run: make
     - name: make check
       run: make check
-    - name: correct logs
+    - if: always()
+      name: correct logs
       run: |
         pwd
         ls -la
