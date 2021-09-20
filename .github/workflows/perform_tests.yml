@@ -43,7 +43,7 @@ jobs:
     - name: make
       run: make
     - name: make check
-      run: make check || ./correct_log.sh ${{ matrix.arch }}
+      run: make check || ./scripts/correct_log.sh ${{ matrix.arch }}
     - if: always()
       uses: actions/upload-artifact@v2
       with:
