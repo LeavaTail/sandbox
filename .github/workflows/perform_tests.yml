@@ -33,6 +33,10 @@ jobs:
       env:
         CC: ${{ matrix.compiler }}
       run: make
+    - name: check
+      run: |
+        pwd
+        ls -la
 
   test:
     continue-on-error: true
