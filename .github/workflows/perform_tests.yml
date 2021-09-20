@@ -33,11 +33,12 @@ jobs:
       env:
         CC: ${{ matrix.compiler }}
       run: make
-    - name: make check
-      run: make check
+    - name: make check 
+      run: make check || cp ./test-suite.log ../
     - name: copy
       if: always()
       run: |
+         ls -la ../
          cp ./test-suite.log ../
          cp ./tests/*.log ../
 
