@@ -14,14 +14,12 @@ jobs:
       matrix:
         include:
           - compiler: gcc,
-            native: true
+            arch: amd64
           - comliler: clang
-            native: true
+            arch: amd64
           - compiler: arm-linux-gnueabihf-gcc
-            native: false
             arch: armhf
           - compiler: aarch64-linux-gnu-gcc
-            native: false
             arch: arm64
       
     runs-on: ubuntu-latest
@@ -32,7 +30,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install autoconf automake libtool help2man make expect
-    - if: ${{ matrix.native }} == false
+    - if: ${{ matrix.arch }} != amd64
       run:  sudo apt-get install crossbuild-essential-${{ matrix.arch }}
     - name: automake
       run:  scripts/bootstrap.sh
