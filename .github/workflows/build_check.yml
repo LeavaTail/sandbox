@@ -13,6 +13,8 @@ jobs:
       matrix:
         arch: [amd64, armhf, arm64]
         include:
+        - arch: amd64
+          cc: ''
         - arch: armhf
           cc: arm-linux-gnueabihf
         - arch: arm64
@@ -30,7 +32,6 @@ jobs:
     - name: native compiler
       if: ${{ matrix.arch }} == 'amd64'
       run: | 
-        sudo apt-get install crossbuild-essential-${{ matrix.arch }}
         ./configure CFLAGS=-Werror
     - name: cross compiler
       if: ${{ matrix.arch }} != 'amd64'
