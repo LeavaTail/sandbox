@@ -41,7 +41,7 @@ jobs:
     needs: [build]
     steps:
     - name: make check
-      run: make check
+      run: pwd; make check; pwd
     - name: copy
       if: always()
       run: |
