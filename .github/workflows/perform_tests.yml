@@ -49,7 +49,8 @@ jobs:
          ls -la
          mkdir -p ../logs/${{ matrix.compiler }}
          cp ./test-suite.log ../logs/${{ matrix.compiler }}
-         ls -la ../tests-action
+         ls -la ../
+         ls -la ../../
 #        mv tests/*.log ../logs/${{ matrix.compiler }}
 
   artifact:
