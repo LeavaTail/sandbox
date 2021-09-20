@@ -40,8 +40,7 @@ jobs:
       run: |
          pwd
          ls -la
-
-#        cp ./test-suite.log ../logs/${{ matrix.compiler }}
+         cp ./test-suite.log ../logs/${{ matrix.compiler }}
 #        mv tests/*.log ../logs/${{ matrix.compiler }}
 
   after-build:
