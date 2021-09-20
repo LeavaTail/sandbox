@@ -37,6 +37,6 @@ jobs:
       if: ${{ matrix.arch }} != 'amd64'
       run: | 
         sudo apt-get install crossbuild-essential-${{ matrix.arch }}
-        ./configure CFLAGS=-Werror --host=${{ matrix.cross }} 
+        ./configure CFLAGS=-Werror --host=${{ matrix.cc }} 
     - name: make
       run: make
