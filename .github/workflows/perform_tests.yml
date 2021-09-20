@@ -44,9 +44,7 @@ jobs:
       run: |
          pwd
          ls -la
-         mkdir -p ../logs/${{ matrix.compiler }}
-         cp ./test-suite.log ../logs/${{ matrix.compiler }}
-         ls -la
+         ls -la ../
     - name: make check
       run: make check
     - name: copy
