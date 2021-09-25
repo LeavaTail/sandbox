@@ -20,7 +20,7 @@ jobs:
       run: ./scripts/bootstrap.sh
     - name: native compiler
       run: | 
-        ./configure CFLAG="--coverage --no-inline -g3 -O0"
+        ./configure --enable-gcov
     - name: make
       run: make
     - name: make check

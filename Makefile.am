@@ -25,8 +25,14 @@ AM_CPPFLAGS = -I$(top_srcdir)/common
 
 if DEBUG
 AM_CPPFLAGS += -O0 -g3 -Wall -DEXFAT_DEBUG
+LDFLAGS += -lgcov
 else
 AM_CPPFLAGS += -O2
+endif
+
+if GCOV
+AM_CPPFLAGS += -O0 --no-inline -fprofile-arcs -ftest-coverage
+LDFLAGS += -lgcov
 endif
 
 checkexfat.8: checkexfat$(EXEEXT)
