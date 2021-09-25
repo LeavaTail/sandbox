@@ -91,7 +91,7 @@ build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = checkexfat$(EXEEXT) statfsexfat$(EXEEXT) \
 	lsexfat$(EXEEXT)
-@DEBUG_TRUE@am__append_1 = -O0 -g3 -Wall -DEXFAT_DEBUG
+@DEBUG_TRUE@am__append_1 = -O0 -g3 -Wall --coverage --no-inline -DEXFAT_DEBUG
 @DEBUG_FALSE@am__append_2 = -O2
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
