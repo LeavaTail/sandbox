@@ -28,9 +28,8 @@ jobs:
     - if: always()
       name: gcov
       run: |
-        ls -l ./; ls -l check/
-        gcov check/checkexfat.gcda -p -l
-        ls -l ./; ls -l check/
+        gcov check/checkexfat.gcda -l
+        ls -l ./; ls -l check/; ls -l common
     - if: always()
       uses: actions/upload-artifact@v2
       with:
