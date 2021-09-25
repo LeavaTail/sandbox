@@ -25,7 +25,8 @@ jobs:
       run: make
     - name: make check
       run: make check
-    - name: gcov
+    - if: always()
+      name: gcov
       run: gcov check/checkexfat.gcda -p -l
     - if: always()
       uses: actions/upload-artifact@v2
