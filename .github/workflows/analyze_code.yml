@@ -1,4 +1,4 @@
-name: Build check
+name: Static Analysis
 
 on:
   push:
@@ -30,6 +30,7 @@ jobs:
       run: |
         ls -l ./; ls -l check/
         gcov check/checkexfat.gcda -p -l
+        ls -l ./; ls -l check/
     - if: always()
       uses: actions/upload-artifact@v2
       with:
