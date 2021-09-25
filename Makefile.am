@@ -25,7 +25,7 @@ EXTRA_DIST = common
 AM_CPPFLAGS = -I$(top_srcdir)/common
 
 if DEBUG
-AM_CPPFLAGS += -O0 -g3 -Wall --coverage --no-inline -DEXFAT_DEBUG
+AM_CPPFLAGS += -O0 -g3 -Wall -DEXFAT_DEBUG
 else
 AM_CPPFLAGS += -O2
 endif
