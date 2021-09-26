@@ -15,7 +15,7 @@ jobs:
     - name: setup environment
       run: |
         sudo apt-get update
-        sudo apt-get install autoconf automake libtool help2man make lcov
+        sudo apt-get install autoconf automake libtool help2man make lcov awk
     - name: automake
       run: ./scripts/bootstrap.sh
     - name: native compiler
@@ -28,12 +28,11 @@ jobs:
     - if: always()
       name: gcov
       run: |
-        gcov check/checkexfat.gcda -l
-        ls -l ./; ls -l check/; ls -l common
+	    scripts/correct_coverage.sh
     - if: always()
       uses: actions/upload-artifact@v2
       with:
         name: logs
         path: |
-          checkexfat.c.gcov
+          logs
         retention-days: 1
