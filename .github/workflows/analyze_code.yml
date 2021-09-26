@@ -1,4 +1,4 @@
-name: Static Analysis
+name: Test Coverage
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
     - if: always()
       name: gcov
       run: |
-	    scripts/correct_coverage.sh
+        scripts/correct_coverage.sh
     - if: always()
       uses: actions/upload-artifact@v2
       with:
