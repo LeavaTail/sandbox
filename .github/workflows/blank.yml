@@ -20,7 +20,7 @@ jobs:
       - name: upload to artifact
         run: |
           mkdir -p outputs
-          mv ../test-*.tar.gz outputs
+          mv ./test-*.tar.gz outputs
       - if: always()
         uses: actions/upload-artifact@v2
         with:
