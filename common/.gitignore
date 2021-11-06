@@ -1,5 +1,0 @@
-*.o
-*.lo
-*.gch
-.deps
-.dirstamp
