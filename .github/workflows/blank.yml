@@ -16,6 +16,7 @@ jobs:
       - name: create archive
         run: |
           git archive HEAD -o test-`cat VERSION`.tar.gz
+          ls -l
       - name: upload to artifact
         run: |
           mkdir -p outputs
