@@ -24,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: outputs
-          path: outputs/test-_*.tar.gz
+          path: outputs/test-*.tar.gz
           retention-days: 1
 
   release:
