@@ -37,6 +37,6 @@ jobs:
 
       - name: Pbuilder
         run: |
-          apt-get install pbuilder
+          sudo apt-get install pbuilder
           sudo pbuilder create
       
