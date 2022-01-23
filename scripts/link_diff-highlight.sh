@@ -28,6 +28,7 @@ fi
 package_manager
 
 if [ ! -z "$MANAGER" ]; then
+	echo `${MANAGER} git`
 	ARRAY=($(${MANAGER} git | grep "/${TARGET}$"))
 	echo ${ARRAY}
 fi
