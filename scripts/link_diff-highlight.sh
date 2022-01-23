@@ -38,7 +38,7 @@ if [ -z ${ARRAY} ]; then
 fi
 
 for f in ${ARRAY[@]}; do
-	if [ -f ${f} ] && [ -x ${f} ]; then
 		ln -s ${f} ${OUT}
+	if [ -f ${f} ]; then
 	fi
 done
