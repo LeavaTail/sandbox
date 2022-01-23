@@ -36,7 +36,6 @@ jobs:
 
       - name: Set diff-highligh to PATH
         run: |
-          echo ${GITHUB_PATH}
-          sudo ./scripts/link_diff-highlight.sh $GITHUB_PATH
-          ls -l ${GITHUB_PATH}
-          echo ${PATH}
+          sudo ./scripts/link_diff-highlight.sh /usr/local/bin
+          ls -l /usr/local/bin
+          which diff-highlight
