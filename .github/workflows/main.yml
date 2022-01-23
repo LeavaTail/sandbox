@@ -27,15 +27,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      - name: Install depends packages
-        run: |
-          sudo apt-get update
-          sudo apt-get install git
 
       - name: Set diff-highligh to PATH
         run: |
-          sudo ./scripts/link_diff-highlight.sh /usr/local/bin/diff-highlight
-          ls -l /usr/local/bin
-          which diff-highlight
+          echo ${GITHUB_JOB}
+          echo ${GITHUB_ACTION}
+          echo ${GITHUB_RUN_OD}
+          echo ${GITHUB_REPOSITORY}
