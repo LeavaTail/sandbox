@@ -45,5 +45,5 @@ if "${FOUND}"; then
 	echo "Create link from '${f}' to '${OUT}'"
 else
 	make -C ${DIR}
-	ln -s ${f}/diff-highligh ${OUT}
+	ln -s ${f}/${TARGET} ${OUT}
 fi
