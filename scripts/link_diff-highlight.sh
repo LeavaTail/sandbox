@@ -28,7 +28,7 @@ fi
 package_manager
 
 if [ ! -z "$MANAGER" ]; then
-	ARRAY=`${MANAGER} git | grep "/${TARGET}$"`
+	ARRAY=($(${MANAGER} git | grep "/${TARGET}$"))
 	echo ${ARRAY}
 fi
 
@@ -37,7 +37,7 @@ if [ -z ${ARRAY} ]; then
 	exit 1
 fi
 
-for f in ${ARRAY}; do
+for f in ${ARRAY[@]}; do
 	if [ -f ${f} ] && [ -x ${f} ]; then
 		ln -s ${f} ${OUT}
 	fi
