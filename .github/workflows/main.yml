@@ -1,0 +1,50 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+          os: [ubuntu-18.04, ubuntu-20.04]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Install depends packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install git
+
+      - name: Set diff-highligh to PATH
+        run: |
+          echo ${GITHUB_PATH}
+          sudo ./scripts/link_diff-highlight.sh "/usr/local/bin"
+          ls -l /usr/local/bin
+
+      - name: Clean develop environments
+        run:  make clean
+
+      - name: Install each dotfiles
+        run:  make install
+
+      - name: Check whether each dotfiles is installed
+        run:  make test
