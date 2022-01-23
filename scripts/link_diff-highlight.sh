@@ -32,8 +32,7 @@ TARGET_LIST=($(${MANAGER} git | grep "/${TARGET}$"))
 
 for f in ${TARGET_LIST[@]}; do
 	if [ -f ${f} ]; then
-#		ln -s ${f} ${OUT}
-		echo ${f}
+		ln -s ${f} ${OUT}
 		FOUND=true
 	elif [ -d ${f} ]; then
 		DIR=${f}
@@ -46,4 +45,5 @@ if "${FOUND}"; then
 	echo "Create link from '${f}' to '${OUT}'"
 else
 	make -C ${DIR}
+	ln -s ${f}/diff-highligh ${OUT}
 fi
