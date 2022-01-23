@@ -16,6 +16,8 @@ function package_manager() {
 		MANAGER="dpkg -L"
 	elif (type "rpm" > /dev/null 2>&1); then
 		MANAGER="rpm -ql"
+	else
+		echo "None"
 	fi
 }
 
@@ -27,6 +29,7 @@ package_manager
 
 if [ ! -z "$MANAGER" ]; then
 	ARRAY=`${MANAGER} git | grep "/${TARGET}$"`
+	echo ${ARRAY}
 fi
 
 if [ -z ${ARRAY} ]; then
