@@ -36,6 +36,6 @@ jobs:
 
       - name: Set diff-highligh to PATH
         run: |
-          sudo ./scripts/link_diff-highlight.sh /usr/local/bin
+          sudo ./scripts/link_diff-highlight.sh /usr/local/bin/diff-highlight
           ls -l /usr/local/bin
           which diff-highlight
