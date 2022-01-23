@@ -38,4 +38,5 @@ jobs:
         run: |
           echo ${GITHUB_PATH}
           sudo ./scripts/link_diff-highlight.sh ${GITHUB_PATH}
-          ls -l /usr/local/bin
+          ls -l ${GITHUB_PATH}
+          ehich diff-highlight
