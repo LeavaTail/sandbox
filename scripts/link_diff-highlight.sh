@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/bash -eux
 #
 # usage:
 #   check_diff-highlight.sh path
