@@ -32,7 +32,7 @@ jobs:
       - name: automake
         run: ./scripts/bootstrap.sh
       - name: Generate debian package
-        run: dpkg-buildpackage -b -us -uc -d -rfakeroot
+        run: dpkg-buildpackage -us -uc
       # Runs a single command using the runners shell
       - name: Pbuilder
         run: |
