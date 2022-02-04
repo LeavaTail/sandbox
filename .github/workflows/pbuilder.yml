@@ -29,15 +29,10 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install autoconf automake libtool help2man make dh-make
-          gcc --version
-      - name: install cross compiler
-        if: ${{ matrix.arch  }} != 'amd64'
-        run: |
-          sudo apt-get install crossbuild-essential-${{ matrix.arch }}
       - name: automake
         run: ./scripts/bootstrap.sh
       - name: Generate debian package
-        run: dpkg-buildpackage -b -us -uc -d -rfakeroot --host-arch ${{ matrix.arch }}
+        run: dpkg-buildpackage -b -us -uc -d -rfakeroot
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
