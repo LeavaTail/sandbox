@@ -43,7 +43,7 @@ jobs:
         run: cp debian/pbuilderrc ~/.pbuilderrc
       - name: Pbuilder create 
         run: |
-          sudo pbuilder create --debootstrapopts --arch --debootstrapopts arm64
+          pbuilder-dist focal arm64 create
       - name: Pbuilder build
         run: |
-          sudo pbuilder build *.dsc
+          pbuilder-dist focal arm64 build ../exfat-rawtools_*.dsc --debug
