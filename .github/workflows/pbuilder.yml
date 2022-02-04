@@ -37,6 +37,5 @@ jobs:
 
       - name: Pbuilder
         run: |
-          sudo apt-get install pbuilder
-          sudo pbuilder create
-      
+          sudo apt-get install ubuntu-dev-tools
+          pbuilder-dist focal arm64 create
