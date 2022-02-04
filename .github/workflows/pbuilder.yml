@@ -34,11 +34,15 @@ jobs:
       - name: Generate debian package
         run: dpkg-buildpackage -us -uc
       # Runs a single command using the runners shell
-      - name: Pbuilder
+      - name: Pbuilder pre
         run: |
           sudo apt-get install ubuntu-dev-tools
           sudo apt-get install qemu-user-static
-          sudo apt-get install debhelper-compat
-          sudo apt-get install curl libarchive-cpio-perl libglib2.0-data libltdl-dev libmail-sendmail-perl lynx shared-mime-info wget xdg-user-dirs 
+      - name: Pbuilder pre2
+        run: |
+          cp debian/pbuilderrc ~/.pbuilder
+      - name: Pbuilder create 
+        run: |
           pbuilder-dist focal arm64 create --debug
+      - name: Pbuilder build
           pbuilder-dist focal arm64 build ../exfat-rawtools_*.dsc --debug
