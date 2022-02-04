@@ -5,4 +5,4 @@
 #
 # read pbuilderrc.5 document for notes on specific options.
 MIRRORSITE=http://jp.archive.ubuntu.com/ubuntu
-EXTRAPACKAGES="debhelper-compat autotools-dev"
+EXTRAPACKAGES="apt-utils debhelper-compat autotools-dev"
