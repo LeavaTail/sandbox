@@ -33,16 +33,15 @@ jobs:
         run: ./scripts/bootstrap.sh
       - name: Generate debian package
         run: dpkg-buildpackage -us -uc
-      # Runs a single command using the runners shell
       - name: Pbuilder pre
         run: |
           sudo apt-get install ubuntu-dev-tools
           sudo apt-get install qemu-user-static
       - name: Pbuilder pre2
-        run: |
-          cp debian/pbuilderrc ~/.pbuilder
+        run: cp debian/pbuilderrc ~/.pbuilder
       - name: Pbuilder create 
         run: |
           pbuilder-dist focal arm64 create --debug
       - name: Pbuilder build
+        run: |
           pbuilder-dist focal arm64 build ../exfat-rawtools_*.dsc --debug
