@@ -43,7 +43,7 @@ jobs:
         run: cp debian/pbuilderrc ~/.pbuilderrc
       - name: Pbuilder create 
         run: |
-          pbuilder-dist focal arm64 create --variant=buildd --mirror "http://jp.archive.ubuntu.com/ubuntu" --debootstrapopts "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg"
+          sudo pbuilder create --debootstrapopts --arch --debootstrapopts arm64
       - name: Pbuilder build
         run: |
-          pbuilder-dist focal arm64 build ../exfat-rawtools_*.dsc --debug
+          sudo pbuilder build *.dsc
