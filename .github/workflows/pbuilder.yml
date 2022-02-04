@@ -38,6 +38,4 @@ jobs:
         run: |
           sudo apt-get install ubuntu-dev-tools
           sudo apt-get install qemu-user-static
-          pbuilder-dist focal arm64 create
           ls -l ../
-          pbuilder-dist focal arm64 build ../exfat-rawtools_*.dsc
