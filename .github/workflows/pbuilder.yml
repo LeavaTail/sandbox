@@ -37,11 +37,13 @@ jobs:
         run: |
           sudo apt-get install ubuntu-dev-tools
           sudo apt-get install qemu-user-static
+          sudo apt-get install pbuilder debootstrap devscripts
+          sudo apt-get install debian-archive-keyring
       - name: Pbuilder pre2
-        run: cp debian/pbuilderrc ~/.pbuilder
+        run: cp debian/pbuilderrc ~/.pbuilderrc
       - name: Pbuilder create 
         run: |
-          pbuilder-dist focal arm64 create --debug
+          pbuilder-dist focal arm64 create --variant=buildd --mirror "http://jp.archive.ubuntu.com/ubuntu" --debootstrapopts "--keyring=/usr/share/keyrings/debian-archive-keyring.gpg"
       - name: Pbuilder build
         run: |
           pbuilder-dist focal arm64 build ../exfat-rawtools_*.dsc --debug
