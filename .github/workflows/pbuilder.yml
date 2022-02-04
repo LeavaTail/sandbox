@@ -38,5 +38,6 @@ jobs:
         run: |
           sudo apt-get install ubuntu-dev-tools
           sudo apt-get install qemu-user-static
+          sudo apt-get install curl libarchive-cpio-perl libglib2.0-data libltdl-dev libmail-sendmail-perl lynx shared-mime-info wget xdg-user-dirs 
           pbuilder-dist focal arm64 create
           pbuilder-dist focal arm64 build ../exfat-rawtools_*.dsc
