@@ -53,6 +53,8 @@ jobs:
            cd /var/cache/pbuilder/hook.d/
            sudo apt-ftparchive packages . > Packages && gzip -c Packages >Packages.gz
            cd -
+      - name: update
+        run: pbuilder-dist hirsute update --override-config
       - name: Pbuilder build
         run: |
           pbuilder-dist focal arm64 build ../exfat-rawtools_*.dsc --debug
