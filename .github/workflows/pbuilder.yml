@@ -42,7 +42,9 @@ jobs:
       - name: Pbuilder pre2
         run: cp debian/pbuilderrc ~/.pbuilderrc
       - name: hook
-        run: cp debian/D70apt-update /var/cache/pbuilder/hook.d/
+        run: sudo mkdir -p /var/cache/pbuilder/hook.d
+      - name: hook2
+        run: sudo cp debian/D70apt-update /var/cache/pbuilder/hook.d/
       - name: Pbuilder create 
         run: |
           pbuilder-dist focal arm64 create
