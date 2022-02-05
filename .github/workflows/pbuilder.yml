@@ -48,6 +48,11 @@ jobs:
       - name: Pbuilder create 
         run: |
           pbuilder-dist focal arm64 create
+      - name: repository
+        run: |
+           cd /var/cache/pbuilder/hook.d/
+           sudo apt-ftparchive packages . > Packages && gzip -c Packages >Packages.gz
+           cd -
       - name: Pbuilder build
         run: |
           pbuilder-dist focal arm64 build ../exfat-rawtools_*.dsc --debug
