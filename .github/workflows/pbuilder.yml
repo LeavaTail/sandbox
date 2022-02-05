@@ -54,7 +54,7 @@ jobs:
            sudo apt-ftparchive packages . > Packages && gzip -c Packages >Packages.gz
            cd -
       - name: update
-        run: pbuilder-dist focal-arm64 update --override-config
+        run: pbuilder-dist focal update --override-config
       - name: Pbuilder build
         run: |
           pbuilder-dist focal arm64 build ../exfat-rawtools_*.dsc --debug
