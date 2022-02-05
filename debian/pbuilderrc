@@ -6,3 +6,4 @@
 # read pbuilderrc.5 document for notes on specific options.
 MIRRORSITE=http://jp.archive.ubuntu.com/ubuntu
 EXTRAPACKAGES="apt-utils debhelper-compat autotools-dev"
+HOOKDIR="/var/cache/pbuilder/hook.d"

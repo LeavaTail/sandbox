@@ -41,6 +41,8 @@ jobs:
           sudo apt-get install debian-archive-keyring
       - name: Pbuilder pre2
         run: cp debian/pbuilderrc ~/.pbuilderrc
+      - name: hook
+        run: cp debian/D70apt-update /var/cache/pbuilder/hook.d/
       - name: Pbuilder create 
         run: |
           pbuilder-dist focal arm64 create
