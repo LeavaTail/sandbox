@@ -29,7 +29,12 @@ jobs:
       - name: package install
         run: |
           sudo apt-get update
-          sudo apt-get install ubuntu-dev-tools
+          sudo apt-get install ubuntu-dev-tools sbuild
+
+      - name: group
+        run: |
+          sudo adduser $USER sbuild
+          su - $USER
 
       - name: debootstrap
         run: mk-sbuild --debug --arch armhf focal
