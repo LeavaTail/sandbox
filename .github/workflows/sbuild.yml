@@ -31,9 +31,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install ubuntu-dev-tools sbuild
 
-      - name: Addgroup
-        run: sudo adduser $USER sbuild
-
       - name: debootstrap
         run: mk-sbuild --skip-proposed --target armhf focal
 
