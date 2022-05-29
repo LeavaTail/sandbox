@@ -53,5 +53,9 @@ jobs:
         run: schroot -c arm64-ubuntu
 
       # Runs a set of commands using the runners shell
-      - name: Check mount
-        run: mount
+      - name: Check something
+        run: |
+          mount
+          ls -lA
+          uname -a
+          file /bin/bash
