@@ -50,12 +50,8 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run chroot
-        run: schroot -c arm64-ubuntu
+        run: schroot -c arm64-ubuntu -i
 
       # Runs a set of commands using the runners shell
-      - name: Check something
-        run: |
-          mount
-          ls -lA
-          uname -a
-          file /bin/bash
+      - name: Run chroot
+        run: schroot -c arm64-ubuntu file /bin/bash
