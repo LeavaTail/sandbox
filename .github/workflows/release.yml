@@ -27,9 +27,6 @@ jobs:
       run: ./scripts/bootstrap.sh
     - name: generate Distribution
       run: dpkg-buildpackage -b -us -uc -d -rfakeroot
-    - name: Get Name of Artifact
-      run: |
-        cd ..; ls -lA
     - name: artifacts
       uses: actions/upload-artifact@v2
       with:
