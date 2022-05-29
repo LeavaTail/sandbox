@@ -98,4 +98,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: [native_build, cross_build]
     steps:
-      run: echo OK
+      - name: test2
+        run: echo AA
