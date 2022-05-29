@@ -27,6 +27,8 @@ jobs:
       run: ./scripts/bootstrap.sh
     - name: generate Distribution
       run: dpkg-buildpackage -b -us -uc -d -rfakeroot
+    - name: move
+      run: mv ../*.deb ./
     - name: artifacts
       uses: actions/upload-artifact@v2
       with:
