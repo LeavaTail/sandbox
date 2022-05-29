@@ -34,7 +34,7 @@ jobs:
       - name: group
         run: |
           sudo adduser $USER sbuild
-          su - $USER
+          sudo su - $USER
 
       - name: debootstrap
         run: mk-sbuild --debug --arch armhf focal
