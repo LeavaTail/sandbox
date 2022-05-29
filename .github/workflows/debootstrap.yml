@@ -37,7 +37,7 @@ jobs:
           sudo apt-get install qemu-user-static debootstrap schroot
 
       - name: debootstrap
-        run: sudo qemu-debootstrap --arch=arm64 --include=fakeroot,autoconf,automake,libtool,make,dh-make focal /chroot/arm64 http://ports.ubuntu.com/
+        run: sudo qemu-debootstrap --arch=arm64 --include=autoconf,automake,libtool,make,dh-make focal /chroot/arm64 http://ports.ubuntu.com/
 
       - name: setup schroot
         run: | 
@@ -51,7 +51,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run chroot
         run: |
-          cat << EOF |  script -e -c 'schroot -c arm64-ubuntu' 
+          cat << EOF |  script -e -c 'schroot -c arm64-ubuntu -p bash -u root' 
+          uname -m
           cd $PWD
           ./scripts/bootstrap.sh
           sudo dpkg-buildpackage -b -us -uc -d
