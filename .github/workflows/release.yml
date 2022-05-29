@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: amd64
-        path: ./exfat-rawtools_*_amd64.deb
+        path: ./*.deb
     - name: clean up
       run: echo "END"
 
