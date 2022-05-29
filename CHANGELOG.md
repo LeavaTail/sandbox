@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0] - 2022-05-29
+
+### Added
+
+- catexfat: test
+
 ## [0.2.0] - 2021-09-30
 
 ### Added
