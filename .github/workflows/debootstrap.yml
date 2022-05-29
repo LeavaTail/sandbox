@@ -54,6 +54,6 @@ jobs:
           cat << EOF |  script -e -c 'schroot -c arm64-ubuntu' 
           cd $PWD
           ./scripts/bootstrap.sh
-          dpkg-buildpackage -us -uc
+          dpkg-buildpackage -b -us -uc -d -rfakeroot
           exit
           EOF
