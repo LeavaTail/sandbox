@@ -55,6 +55,6 @@ jobs:
           uname -m
           cd $PWD
           ./scripts/bootstrap.sh
-          sudo dpkg-buildpackage -b -us -uc -d
+          dpkg-buildpackage -b -us -uc -d
           exit
           EOF
