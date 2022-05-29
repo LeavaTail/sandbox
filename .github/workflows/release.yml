@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: qemu-debootstrap
+name: release
 
 # Controls when the workflow will run
 on:
@@ -60,5 +60,13 @@ jobs:
           cd $PWD
           ./scripts/bootstrap.sh
           dpkg-buildpackage -b -us -uc -d
+          ls -lA ../
           exit
           EOF
+
+      - name: Get Name of Artifact
+        run: |
+          ARTIFACT_PATHNAME=$(ls ../exfat-rawtools_*_amd64.deb | head -n 1)
+          ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
+          echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
+          echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
