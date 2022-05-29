@@ -34,6 +34,7 @@ jobs:
     - name: artifacts
       uses: actions/upload-artifact@v2
       with:
+        name: amd64
         path: ../exfat-rawtools_*_amd64.deb
     - name: clean up
       run: echo "END"
@@ -89,4 +90,5 @@ jobs:
       - name: artifacts
         uses: actions/upload-artifact@v2
         with:
+          name: cross_${{ matrix.arch }}
           path: ../exfat-rawtools_*_${{ matrix.arch }}.deb
