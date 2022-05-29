@@ -29,13 +29,12 @@ jobs:
       run: dpkg-buildpackage -b -us -uc -d -rfakeroot
     - name: Get Name of Artifact
       run: |
-        mkdir -p ../artifacts
-        ls ../exfat-rawtools_*_amd64.deb
+        cd ..
     - name: artifacts
       uses: actions/upload-artifact@v2
       with:
         name: amd64
-        path: ../exfat-rawtools_*_amd64.deb
+        path: exfat-rawtools_*_amd64.deb
     - name: clean up
       run: echo "END"
 
@@ -87,8 +86,11 @@ jobs:
           exit
           EOF
 
+      - name: test
+        run: cd ..
+
       - name: artifacts
         uses: actions/upload-artifact@v2
         with:
           name: cross_${{ matrix.arch }}
-          path: ../exfat-rawtools_*_${{ matrix.arch }}.deb
+          path: exfat-rawtools_*_${{ matrix.arch }}.deb
