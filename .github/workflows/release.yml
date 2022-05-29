@@ -35,6 +35,8 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         path: ../exfat-rawtools_*_amd64.deb
+    - name: clean up
+      run: echo "END"
 
   cross_build:
 
@@ -84,7 +86,7 @@ jobs:
           exit
           EOF
 
-     - name: artifacts
+      - name: artifacts
         uses: actions/upload-artifact@v2
         with:
           path: ../exfat-rawtools_*_${{ matrix.arch }}.deb
