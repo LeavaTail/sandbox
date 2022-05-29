@@ -43,7 +43,7 @@ jobs:
         run: | 
           echo "[arm64-ubuntu]
           description=Ubuntu 20.04 Xenial (arm64)
-          directory=$(pwd)/arm64-ubuntu
+          directory=/chroot/arm64
           root-users=$(whoami)
           users=$(whoami)
           type=directory" | sudo tee /etc/schroot/chroot.d/arm64-ubuntu
