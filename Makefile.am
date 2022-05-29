@@ -11,7 +11,7 @@ statfsexfat_SOURCES = statfs/statfsexfat.c statfs/statfsexfat.h
 lsexfat_SOURCES = ls/lsexfat.c ls/lsexfat.h
 catexfat_SOURCES = cat/catexfat.c cat/catexfat.h
 
-man_MANS = checkexfat.8 statfsexfat.8 lsexfat.8 catexfat.8
+#man_MANS = checkexfat.8 statfsexfat.8 lsexfat.8 catexfat.8
 
 TESTS = tests/00_init.sh \
         tests/01_test_checkexfat.sh \
