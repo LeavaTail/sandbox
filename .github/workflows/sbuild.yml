@@ -32,7 +32,8 @@ jobs:
           sudo apt-get install ubuntu-dev-tools
 
       - name: test
-        run: cat << "EOF" > ~/.sbuildrc
+        run: |
+          cat << "EOF" > ~/.sbuildrc
 # Name to use as override in .changes files for the Maintainer: field
 # (mandatory, no default!).
 $maintainer_name='Your Name <user@ubuntu.com>';
