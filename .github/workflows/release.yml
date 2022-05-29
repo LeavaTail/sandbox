@@ -32,9 +32,9 @@ jobs:
         mkdir -p ../artifacts
         ls ../exfat-rawtools_*_amd64.deb
     - name: artifacts
-       uses: actions/upload-artifact@v2
-       with:
-         path: ../exfat-rawtools_*_amd64.deb
+      uses: actions/upload-artifact@v2
+      with:
+        path: ../exfat-rawtools_*_amd64.deb
 
   cross_build:
 
