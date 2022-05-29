@@ -54,4 +54,6 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run chroot
-        run: schroot -c arm64-ubuntu file /bin/bash
+        run: |
+          schroot -c arm64-ubuntu
+          file /bin/bash
