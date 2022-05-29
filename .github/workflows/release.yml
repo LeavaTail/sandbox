@@ -15,8 +15,25 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  native_build:
+    steps:
+    - uses: actions/checkout@v2
+    - name: setup environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install autoconf automake libtool help2man make dh-make
+    - name: automake
+      run: ./scripts/bootstrap.sh
+    - name: generate Distribution
+      run: dpkg-buildpackage -b -us -uc -d -rfakeroot
+    - name: Get Name of Artifact
+      run: |
+        ARTIFACT_PATHNAME=$(ls ../exfat-rawtools_*_amd64.deb | head -n 1)
+        ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
+        echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
+        echo "ARTIFACT_PATHNAME=${ARTIFACT_PATHNAME}" >> $GITHUB_ENV
+
+  cross_build:
 
     strategy:
       matrix:
