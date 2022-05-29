@@ -29,10 +29,10 @@ jobs:
       - name: package install
         run: |
           sudo apt-get update
-          sudo apt-get install ubuntu-dev-tools sbuild
+          sudo apt-get install ubuntu-dev-tools
 
       - name: debootstrap
-        run: mk-sbuild --skip-proposed --target armhf focal
+        run: mk-sbuild --arch armhf focal
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
