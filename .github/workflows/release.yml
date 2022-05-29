@@ -101,7 +101,7 @@ jobs:
       - name: load dist
         uses: actions/download-artifact@v2
         with:
-          name: dist
+          name: artifacts
 
       - name: test
         run: ls -la 
