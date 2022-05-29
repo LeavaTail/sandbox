@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: sbuild
+name: qemu-debootstrap
 
 # Controls when the workflow will run
 on:
@@ -29,15 +29,10 @@ jobs:
       - name: package install
         run: |
           sudo apt-get update
-          sudo apt-get install ubuntu-dev-tools sbuild
-
-      - name: group
-        run: |
-          sudo adduser $USER sbuild
-          sudo su - $USER
+          sudo apt-get install qemu-user-static debootstrap schroot
 
       - name: debootstrap
-        run: mk-sbuild --debug --arch armhf focal
+        run: sudo qemu-debootstrap --arch=armhf buster /chroot/armhf http://ftp.debian.org/debian/
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
