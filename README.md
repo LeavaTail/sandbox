@@ -18,7 +18,6 @@ exfat-rawtools includes some tools related exFAT filesystem.
 These tools can update exFAT filesystem iamges or obtain exFAT filesystem
 informations w/o mounting filesystem.
 
-
 ## Description
 
 The following functions have been implemented:
@@ -27,10 +26,11 @@ The following functions have been implemented:
 - `statfsexfat`: Display information in Main boot sector
 - `lsexfat`: list directory contents
 - `catexfat` Display file contents
+- `statexfat` Display file or directory status
 
 ### checkexfat
 
-[exFAT file system specification](https://docs.microsoft.com/en-us/windows/win32/fileio/exfat-specification) described parameter requirements.  
+[exFAT file system specification][1] described parameter requirements.  
 checkexfat can detect below exfat filesystem's failure.
 
 - Main boot region parameter
@@ -103,6 +103,23 @@ $ catexfat exfat.img /0_SIMPLE/FILE.TXT
 hello, world
 ```
 
+### statexfat
+
+statexfat display file or directory status for exFAT filesystem.
+
+```
+$ statexfat exfat.img /4_FATCHAIN/FILE2.TXT
+File    : FILE2.TXT
+Size    : 8194
+Cluster : 3 
+First   : 0x0000000d
+Attr    : ----D
+Flags   : FatChain/ AllocationPossible
+Access  : 2021-05-05 01:52:36
+Modify  : 2021-05-05 01:53:53
+Create  : 2021-05-05 01:52:36
+```
+
 ## Requirements
 
 The following operating systems have been confirmed.
@@ -141,3 +158,5 @@ $ sudo make install
 ## Authors
 
 [LeavaTail](https://github.com/LeavaTail)
+
+[1]: (https://docs.microsoft.com/en-us/windows/win32/fileio/exfat-specification)
