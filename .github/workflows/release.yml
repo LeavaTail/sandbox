@@ -94,7 +94,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-    needs: [native_build]
+    needs: [native_build, cross_build]
     steps:
       - uses: actions/checkout@v3
       - name: load dist
