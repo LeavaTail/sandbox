@@ -50,7 +50,12 @@ jobs:
       - name: obtain body
         run: |
           echo "Release ${{ github.ref }}" > body.md
-          ./scripts/get_changelog.sh ${{ github.ref }} > body.md
+          ./scripts/get_changelog.sh ${{ github.ref }} >> body.md
+      - name: artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: contents
+          path: body.md
       - name: Create Release
         run: |
           assets=()

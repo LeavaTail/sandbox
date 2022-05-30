@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.8] - 2022-05-30
+
+### Added
+
+- test: hub command is introduced
+
+### Fixed
+
+- test: test
+
 ## [0.4.7] - 2022-05-30
 
 ### Added
