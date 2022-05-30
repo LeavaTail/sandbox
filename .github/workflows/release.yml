@@ -49,7 +49,7 @@ jobs:
         run: ls -la 
       - name: obtain body
         run: |
-          echo "Release ${{ github.ref }}" > body.md
+          echo "Release ${GITHUB_REF##*/}" > body.md
           ./scripts/get_changelog.sh ${{ github.ref }} >> body.md
       - name: artifacts
         uses: actions/upload-artifact@v2
@@ -63,6 +63,6 @@ jobs:
             assets+=("-a" "$asset")
           done
           tag_name="${GITHUB_REF##*/}"
-          hub release create "${assets[@]}"  -F body.md "$tag_name"
+          hub release create "${assets[@]}" -F body.md "$tag_name"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
