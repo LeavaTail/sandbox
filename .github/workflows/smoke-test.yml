@@ -7,6 +7,8 @@ on:
   push:
     paths:
       - .github/workflow/smoke-test.yml
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
