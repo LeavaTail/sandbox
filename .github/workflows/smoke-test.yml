@@ -1,0 +1,48 @@
+name: Smoke Test
+
+on: push
+
+permissions:
+  contents: read
+
+jobs:
+  smoke_test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+    - name: Install package
+      run: |
+        pip install .
+    - name: Define environment
+      run: |
+        # target directory
+        echo "dir=results" >> $GITHUB_ENV
+    - name: Create results directory
+      run: |
+        mkdir ${{ env.dir }}
+        # check.log
+        readonly LOG_FILE="check.log"
+        readonly PASSED_TEST="generic/001"
+        readonly SKIPPED_TEST="generic/002"
+        readonly FAILED_TEST="generic/003"
+        date > ${{ env.dir }}/${LOG_FILE}
+        echo "Ran: ${PASSED_TEST} ${SKIPPED_TEST} ${FAILED_TEST}" >> "${{ env.dir }}/${LOG_FILE}"
+        echo "Not run: ${SKIPPED_TEST}" >> "${{ env.dir }}/${LOG_FILE}"
+        echo "Failures: ${FAILED_TEST}" >> "${{ env.dir }}/${LOG_FILE}"
+        echo "Failed 1 of 3 tests" >> "${{ env.dir }}/${LOG_FILE}"
+        # check.log
+        readonly TIME_FILE="check.time"
+        echo "${PASSED_TEST} 100" > "${{ env.dir }}/${TIME_FILE}"
+        # generic/ directory
+        mkdir "${{ env.dir }}/generic"
+        echo "This is notrun file" > "${{ env.dir }}/${SKIPPED_TEST}.notrun"
+    - name: Execute
+      run: |
+        xfstests-results-viewer ${{ env.dir }}
