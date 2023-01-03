@@ -4,7 +4,7 @@ This modules define the method for excel format.
 """
 
 import pandas as pd
-from .conv_generic import ConvClass
+from conv_generic import ConvClass
 
 class ConvExcelClass(ConvClass):
 

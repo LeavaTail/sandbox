@@ -4,7 +4,7 @@ This modules define the method for JSON format.
 """
 
 import json
-from .conv_generic import ConvClass
+from conv_generic import ConvClass
 
 class ConvJsonClass(ConvClass):
 
