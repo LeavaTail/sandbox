@@ -3,6 +3,7 @@
 This modules define the method to create the some instances
 """
 
+import sys
 import re
 from logging import getLogger, CRITICAL
 from testcase import PassedClass, SkippedClass, FailedClass
