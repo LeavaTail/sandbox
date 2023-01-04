@@ -22,7 +22,7 @@ jobs:
       run: |
         ./configure
         make
-        make install
+        sudo make install
     - name: create sparse files
       run: |
         dd if=/dev/zero of=file.img bs=1 count=0 seek=2T
@@ -35,8 +35,8 @@ jobs:
         sudo umount mnt
     - name: run
       run: |
-        checkexfat file.img
-        statfsexfat file.img
-        lsexfat file.img /
-        statexfat file.img /DIR
+        sudo checkexfat file.img
+        sudo statfsexfat file.img
+        sudo lsexfat file.img /
+        sudo statexfat file.img /DIR
 
