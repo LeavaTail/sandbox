@@ -1,0 +1,19 @@
+name: Test Coverage
+
+on:
+  push:
+    branches: [ main, develop, topic/autotools ]
+  pull_request:
+    branches: [ main, develop, topic/autotools ]
+
+jobs:
+  build:
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - run: pip install cpplint
+    - run: cpplint --recursive .
