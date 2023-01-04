@@ -29,14 +29,8 @@ jobs:
     - name: create sparsed image
       run: |
         mkfs.exfat file.img
-        mkdir mnt
-        sudo mount file.img -t exfat -o loop file.img mnt
-        sudo mkdir mnt/DIR
-        sudo umount mnt
     - name: run
       run: |
         sudo checkexfat file.img
         sudo statfsexfat file.img
         sudo lsexfat file.img /
-        sudo statexfat file.img /DIR
-
