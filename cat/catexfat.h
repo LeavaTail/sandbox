@@ -2,8 +2,8 @@
 /*
  *  Copyright (C) 2021 LeavaTail
  */
-#ifndef _CATEXFAT_H
-#define _CATEXFAT_H
+#ifndef _CAT_CATEXFAT_H_
+#define _CAT_CATEXFAT_H_
 
 #include <stdio.h>
 #include <stdint.h>
@@ -20,4 +20,4 @@
 #define PROGRAM_AUTHOR   "LeavaTail"
 #define COPYRIGHT_YEAR   "2021"
 
-#endif /*_CATEXFAT_H */
+#endif /*_CAT_CATEXFAT_H_ */
